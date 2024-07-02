@@ -1,6 +1,7 @@
 name: Build and Analyze
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -16,10 +17,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v2
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
       with:
-        java-version: '1.8'
+        distribution: 'temurin'
+        java-version: '17'
 
     - name: Build with Maven
       run: mvn clean install
@@ -29,5 +31,6 @@ jobs:
 
     - name: SonarQube Scan
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn sonar:sonar -Dsonar.projectKey=your_project_key -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        SONAR_TOKEN: squ_01308039ba8b587bef183aa0978f35b013ab5cb2
+      run: mvn sonar:sonar -Dsonar.projectKey=java-reachability-play_java-reachability-play -Dsonar.host.url=http://3.88.181.110:9000 -Dsonar.login=squ_01308039ba8b587bef183aa0978f35b013ab5cb2
+
