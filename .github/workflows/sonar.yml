@@ -26,8 +26,8 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
-    - name: Run unit tests
-      run: mvn test
+    - name: Run unit tests and generate coverage report
+      run: mvn test jacoco:report
 
     - name: SonarQube Scan
       env:
@@ -40,4 +40,3 @@ jobs:
         scanMetadataReportFile: target/sonar/report-task.txt
       env:
         SONAR_TOKEN: squ_01308039ba8b587bef183aa0978f35b013ab5cb2
-
