@@ -24,11 +24,11 @@ jobs:
       run: mvn test jacoco:report
 
     - name: SonarQube Scan
-      run: mvn sonar:sonar -Dsonar.projectKey=java-reachability-play_java-reachability-play -Dsonar.host.url=http://3.88.181.110:9000 -Dsonar.login=squ_01308039ba8b587bef183aa0978f35b013ab5cb2
+      run: mvn sonar:sonar -Dsonar.projectKey=java-reachability-play_java-reachability-play -Dsonar.host.url=http://3.88.181.110:9000 -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
     - name: SonarQube Quality Gate check
       uses: sonarsource/sonarqube-quality-gate-action@master
       with:
-         scanMetadataReportFile: target/sonar/report-task.txt
+        scanMetadataReportFile: target/sonar/report-task.txt
       env:
-        SONAR_TOKEN: squ_01308039ba8b587bef183aa0978f35b013ab5cb2
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
