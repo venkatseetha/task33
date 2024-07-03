@@ -36,7 +36,7 @@ jobs:
 
     - name: SonarQube Quality Gate check
       uses: sonarsource/sonarqube-quality-gate-action@master
-      with:
-        scanMetadataReportFile: target/sonar/report-task.txt
+      # with:
+      #   scanMetadataReportFile: target/sonar/report-task.txt
       env:
         SONAR_TOKEN: squ_01308039ba8b587bef183aa0978f35b013ab5cb2
