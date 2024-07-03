@@ -61,6 +61,4 @@
             </plugin>
         </plugins>
     </build>
-     <sonar.host.url>http://3.88.181.110:9000</sonar.host.url>
-     <sonar.login>squ_01308039ba8b587bef183aa0978f35b013ab5cb2</sonar.login>
 </project>
