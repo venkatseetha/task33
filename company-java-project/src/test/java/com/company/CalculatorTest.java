@@ -1,45 +1,59 @@
 package com.company;
 
-public class Calculator {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    // Example of a duplicated method
-    public int multiply(int a, int b) {
-        return a * b;
+import org.junit.jupiter.api.Test;
+
+public class CalculatorTest {
+
+    @Test
+    public void testMultiply() {
+        Calculator calculator = new Calculator();
+        assertEquals(6, calculator.multiply(2, 3));
     }
 
-    // Example of a duplicated method
-    public int multiplyAgain(int a, int b) {
-        return a * b;
+    @Test
+    public void testMultiply_ByZero() {
+        Calculator calculator = new Calculator();
+        assertEquals(0, calculator.multiply(2, 0));
     }
 
-    // Complex method without proper documentation
-    public int complexMethod(int a, int b) {
-        int result = 0;
-        for (int i = 0; i < a; i++) {
-            for (int j = 0; j < b; j++) {
-                result += i * j;
-            }
-        }
-        return result;
+    @Test
+    public void testDivide() {
+        Calculator calculator = new Calculator();
+        assertEquals(2, calculator.divide(6, 3));
     }
 
-    public int divide(int a, int b) {
-        if (b == 0) {
-            throw new IllegalArgumentException("Cannot divide by zero");
-        }
-        return a / b;
+    @Test
+    public void testDivide_ByZero() {
+        Calculator calculator = new Calculator();
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculator.divide(1, 0);
+        });
     }
 
-    // Method with no usage
-    public int unusedMethod(int a, int b) {
-        return a + b;
+    @Test
+    public void testAdd() {
+        Calculator calculator = new Calculator();
+        assertEquals(5, calculator.add(2, 3));
     }
 
-    public int add(int a, int b) {
-        return a + b;
+    @Test
+    public void testSubtract() {
+        Calculator calculator = new Calculator();
+        assertEquals(-1, calculator.subtract(2, 3));
     }
 
-    public int subtract(int a, int b) {
-        return a - b;
+    @Test
+    public void testAdd_NegativeNumbers() {
+        Calculator calculator = new Calculator();
+        assertEquals(-5, calculator.add(-2, -3));
+    }
+
+    @Test
+    public void testSubtract_NegativeNumbers() {
+        Calculator calculator = new Calculator();
+        assertEquals(1, calculator.subtract(-2, -3));
     }
 }
